@@ -8,7 +8,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, sans-serif;
+      font-family: -apple-system, 'Helvetica Neue', sans-serif;
       background: #1c1c1e;
       min-height: 100vh;
       display: flex;
@@ -24,7 +24,7 @@
       justify-content: space-between;
       height: 100vh;
       width: 100vw;
-      padding: 60px 0 50px;
+      padding: 70px 0 40px;
       background: linear-gradient(180deg, #2c3e6e 0%, #1a2a5e 40%, #2c5f8a 100%);
     }
 
@@ -32,45 +32,48 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
     }
 
     .lock-time {
-      font-size: 76px;
-      font-weight: 200;
+      font-size: 80px;
+      font-weight: 100;
       color: white;
-      letter-spacing: 2px;
+      letter-spacing: -2px;
     }
 
     .lock-date {
-      font-size: 17px;
-      color: rgba(255,255,255,0.85);
+      font-size: 16px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.3px;
     }
 
     .lock-middle {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
     .lock-label {
       font-size: 15px;
-      color: rgba(255,255,255,0.85);
-      letter-spacing: 1px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.2px;
     }
 
     .dots {
       display: flex;
-      gap: 14px;
-      margin: 8px 0;
+      gap: 16px;
+      margin: 4px 0;
     }
 
     .dot {
-      width: 13px;
-      height: 13px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
-      border: 1.5px solid rgba(255,255,255,0.7);
+      border: 1.5px solid rgba(255,255,255,0.8);
       background: transparent;
       transition: background 0.1s;
     }
@@ -82,24 +85,25 @@
 
     .keypad {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      padding: 0 32px;
-      width: 100%;
+      grid-template-columns: repeat(3, 80px);
+      gap: 16px;
+      justify-content: center;
     }
 
     .key {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 72px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       background: rgba(255,255,255,0.18);
       color: white;
       border: none;
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1px;
     }
 
     .key:active {
@@ -107,16 +111,17 @@
     }
 
     .key .num {
-      font-size: 30px;
+      font-size: 32px;
       font-weight: 300;
       line-height: 1;
+      letter-spacing: -0.5px;
     }
 
     .key .sub {
       font-size: 9px;
-      letter-spacing: 2px;
-      color: rgba(255,255,255,0.6);
-      margin-top: 2px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      color: rgba(255,255,255,0.7);
     }
 
     .key.empty {
@@ -126,22 +131,23 @@
 
     .key.delete {
       background: transparent;
-      font-size: 24px;
+      font-size: 26px;
     }
 
     .lock-bottom {
       display: flex;
       justify-content: space-between;
       width: 100%;
-      padding: 0 40px;
+      padding: 0 36px;
     }
 
     .lock-bottom-btn {
       color: white;
-      font-size: 15px;
+      font-size: 16px;
+      font-weight: 400;
       background: transparent;
       border: none;
-      opacity: 0.85;
+      opacity: 0.9;
     }
 
     /* 結果画面 */
@@ -237,7 +243,7 @@
     <div class="keypad">
       <button class="key" onclick="pressKey('1')">
         <span class="num">1</span>
-        <span class="sub"></span>
+        <span class="sub"> </span>
       </button>
       <button class="key" onclick="pressKey('2')">
         <span class="num">2</span>
@@ -288,9 +294,9 @@
     <div class="gold-line"></div>
     <div class="card-container">
       <div class="card" id="card">
-        <div class="card-corner"    id="cardCorner"></div>
-        <div class="card-suit"      id="cardSuit"></div>
-        <div class="card-number"    id="cardNumber"></div>
+        <div class="card-corner"        id="cardCorner"></div>
+        <div class="card-suit"          id="cardSuit"></div>
+        <div class="card-number"        id="cardNumber"></div>
         <div class="card-corner-bottom" id="cardCornerBottom"></div>
       </div>
     </div>
@@ -298,7 +304,6 @@
   </div>
 
   <script>
-    // 時刻・日付
     function updateTime() {
       const now  = new Date();
       const h    = String(now.getHours()).padStart(2, '0');
@@ -329,7 +334,6 @@
       if (input.length >= 6) return;
       input += key;
       document.getElementById('dot' + (input.length - 1)).classList.add('filled');
-
       if (input.length === 6) {
         setTimeout(processInput, 200);
       }
@@ -345,7 +349,6 @@
       const suitKey = input[0];
       const numStr  = input[1] + input[2];
       const confirm = input[3];
-      // 5・6桁目はダミーなので無視
 
       const suit = suits[suitKey];
       const num  = parseInt(numStr);
@@ -364,9 +367,9 @@
 
     function showCard(suit, num) {
       const label = numLabels[String(num)];
-      document.getElementById('card').className         = 'card ' + suit.color;
-      document.getElementById('cardSuit').textContent   = suit.symbol;
-      document.getElementById('cardNumber').textContent = label;
+      document.getElementById('card').className             = 'card ' + suit.color;
+      document.getElementById('cardSuit').textContent       = suit.symbol;
+      document.getElementById('cardNumber').textContent     = label;
       document.getElementById('cardCorner').innerHTML       = label + '<br>' + suit.symbol;
       document.getElementById('cardCornerBottom').innerHTML = label + '<br>' + suit.symbol;
 
