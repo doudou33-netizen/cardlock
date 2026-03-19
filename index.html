@@ -17,7 +17,6 @@
       overflow: hidden;
     }
 
-    /* ロック画面 */
     #lock-screen {
       display: flex;
       flex-direction: column;
@@ -26,49 +25,52 @@
       height: 100vh;
       width: 100vw;
       padding: 60px 0 50px;
-      background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      background: linear-gradient(180deg, #2c3e6e 0%, #1a2a5e 40%, #2c5f8a 100%);
+    }
+
+    .lock-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
     }
 
     .lock-time {
-      font-size: 72px;
+      font-size: 76px;
       font-weight: 200;
       color: white;
       letter-spacing: 2px;
-      text-align: center;
     }
 
     .lock-date {
-      font-size: 18px;
-      color: rgba(255,255,255,0.8);
-      text-align: center;
-      margin-top: 8px;
+      font-size: 17px;
+      color: rgba(255,255,255,0.85);
     }
 
     .lock-middle {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
     }
 
     .lock-label {
-      font-size: 16px;
-      color: rgba(255,255,255,0.8);
-      letter-spacing: 2px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 1px;
     }
 
-    /* 入力ドット */
     .dots {
       display: flex;
-      gap: 16px;
-      margin: 16px 0;
+      gap: 14px;
+      margin: 8px 0;
     }
 
     .dot {
-      width: 14px;
-      height: 14px;
+      width: 13px;
+      height: 13px;
       border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.6);
+      border: 1.5px solid rgba(255,255,255,0.7);
       background: transparent;
       transition: background 0.1s;
     }
@@ -78,12 +80,11 @@
       border-color: white;
     }
 
-    /* テンキー */
     .keypad {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      padding: 0 40px;
+      gap: 14px;
+      padding: 0 32px;
       width: 100%;
     }
 
@@ -92,9 +93,9 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 70px;
+      height: 72px;
       border-radius: 50%;
-      background: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.18);
       color: white;
       border: none;
       cursor: pointer;
@@ -102,11 +103,11 @@
     }
 
     .key:active {
-      background: rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.38);
     }
 
     .key .num {
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 300;
       line-height: 1;
     }
@@ -125,7 +126,22 @@
 
     .key.delete {
       background: transparent;
-      font-size: 22px;
+      font-size: 24px;
+    }
+
+    .lock-bottom {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 40px;
+    }
+
+    .lock-bottom-btn {
+      color: white;
+      font-size: 15px;
+      background: transparent;
+      border: none;
+      opacity: 0.85;
     }
 
     /* 結果画面 */
@@ -139,11 +155,14 @@
       background: #0a0a0a;
     }
 
+    .gold-line {
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #c9a84c, transparent);
+      margin: 24px auto;
+    }
+
     .card-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
       animation: reveal 0.8s ease-out;
     }
 
@@ -160,50 +179,25 @@
       position: relative;
     }
 
-    .card.red  { color: #c0392b; }
+    .card.red   { color: #c0392b; }
     .card.black { color: #1a1a1a; }
 
-    .card-suit {
-      font-size: 80px;
-      line-height: 1;
-    }
-
-    .card-number {
-      font-size: 36px;
-      font-weight: bold;
-      margin-top: 8px;
-    }
+    .card-suit   { font-size: 80px; line-height: 1; }
+    .card-number { font-size: 36px; font-weight: bold; margin-top: 8px; }
 
     .card-corner {
       position: absolute;
-      top: 12px;
-      left: 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 18px;
-      font-weight: bold;
-      line-height: 1.2;
+      top: 12px; left: 14px;
+      font-size: 18px; font-weight: bold;
+      line-height: 1.2; text-align: center;
     }
 
     .card-corner-bottom {
       position: absolute;
-      bottom: 12px;
-      right: 14px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 18px;
-      font-weight: bold;
-      line-height: 1.2;
+      bottom: 12px; right: 14px;
+      font-size: 18px; font-weight: bold;
+      line-height: 1.2; text-align: center;
       transform: rotate(180deg);
-    }
-
-    .gold-line {
-      width: 120px;
-      height: 1px;
-      background: linear-gradient(to right, transparent, #c9a84c, transparent);
-      margin: 24px auto;
     }
 
     @keyframes reveal {
@@ -211,34 +205,32 @@
       to   { opacity: 1; transform: scale(1);   }
     }
 
-    /* エラー時の振動 */
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
       25% { transform: translateX(-10px); }
       75% { transform: translateX(10px); }
     }
 
-    .shake {
-      animation: shake 0.3s ease;
-    }
+    .shake { animation: shake 0.3s ease; }
   </style>
 </head>
 <body>
 
-  <!-- ロック画面 -->
   <div id="lock-screen">
-    <div>
+    <div class="lock-top">
       <div class="lock-time" id="lockTime">12:00</div>
       <div class="lock-date" id="lockDate">2024年1月1日 月曜日</div>
     </div>
 
     <div class="lock-middle">
-      <div class="lock-label">ロックを解除</div>
+      <div class="lock-label">パスコードを入力</div>
       <div class="dots" id="dots">
         <div class="dot" id="dot0"></div>
         <div class="dot" id="dot1"></div>
         <div class="dot" id="dot2"></div>
         <div class="dot" id="dot3"></div>
+        <div class="dot" id="dot4"></div>
+        <div class="dot" id="dot5"></div>
       </div>
     </div>
 
@@ -285,16 +277,20 @@
       </button>
       <button class="key delete" onclick="deleteKey()">⌫</button>
     </div>
+
+    <div class="lock-bottom">
+      <button class="lock-bottom-btn">緊急</button>
+      <button class="lock-bottom-btn">キャンセル</button>
+    </div>
   </div>
 
-  <!-- 結果画面 -->
   <div id="result-screen">
     <div class="gold-line"></div>
     <div class="card-container">
       <div class="card" id="card">
-        <div class="card-corner" id="cardCorner"></div>
-        <div class="card-suit" id="cardSuit"></div>
-        <div class="card-number" id="cardNumber"></div>
+        <div class="card-corner"    id="cardCorner"></div>
+        <div class="card-suit"      id="cardSuit"></div>
+        <div class="card-number"    id="cardNumber"></div>
         <div class="card-corner-bottom" id="cardCornerBottom"></div>
       </div>
     </div>
@@ -302,21 +298,19 @@
   </div>
 
   <script>
-    // 時刻・日付を更新
+    // 時刻・日付
     function updateTime() {
-      const now = new Date();
-      const h = String(now.getHours()).padStart(2, '0');
-      const m = String(now.getMinutes()).padStart(2, '0');
+      const now  = new Date();
+      const h    = String(now.getHours()).padStart(2, '0');
+      const m    = String(now.getMinutes()).padStart(2, '0');
       document.getElementById('lockTime').textContent = h + ':' + m;
-
       const days = ['日曜日','月曜日','火曜日','水曜日','木曜日','金曜日','土曜日'];
-      const dateStr = `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日 ${days[now.getDay()]}`;
-      document.getElementById('lockDate').textContent = dateStr;
+      document.getElementById('lockDate').textContent =
+        `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日 ${days[now.getDay()]}`;
     }
     updateTime();
     setInterval(updateTime, 1000);
 
-    // マーク定義
     const suits = {
       '1': { symbol: '♦', name: 'ダイヤ',   color: 'red'   },
       '2': { symbol: '♣', name: 'クラブ',   color: 'black' },
@@ -324,27 +318,20 @@
       '4': { symbol: '♠', name: 'スペード', color: 'black' },
     };
 
-    // 数字の表示変換
     const numLabels = {
-      '1': 'A', '2': '2', '3': '3', '4': '4', '5': '5',
-      '6': '6', '7': '7', '8': '8', '9': '9',
-      '10': '10', '11': 'J', '12': 'Q', '13': 'K'
+      '1':'A','2':'2','3':'3','4':'4','5':'5','6':'6',
+      '7':'7','8':'8','9':'9','10':'10','11':'J','12':'Q','13':'K'
     };
 
     let input = '';
 
     function pressKey(key) {
-      if (input.length >= 4) return;
+      if (input.length >= 6) return;
       input += key;
-
-      // ドットを埋める
       document.getElementById('dot' + (input.length - 1)).classList.add('filled');
 
-      // 4桁入力完了
-      if (input.length === 4) {
-        setTimeout(function() {
-          processInput();
-        }, 200);
+      if (input.length === 6) {
+        setTimeout(processInput, 200);
       }
     }
 
@@ -355,16 +342,15 @@
     }
 
     function processInput() {
-      const suitKey  = input[0];       // 1桁目：マーク
-      const numStr   = input[1] + input[2]; // 2-3桁目：数字
-      const confirm  = input[3];       // 4桁目：0で確定
+      const suitKey = input[0];
+      const numStr  = input[1] + input[2];
+      const confirm = input[3];
+      // 5・6桁目はダミーなので無視
 
-      // バリデーション
       const suit = suits[suitKey];
       const num  = parseInt(numStr);
 
       if (!suit || num < 1 || num > 13 || confirm !== '0') {
-        // 無効な入力 → 振動してリセット
         document.getElementById('dots').classList.add('shake');
         setTimeout(function() {
           document.getElementById('dots').classList.remove('shake');
@@ -373,28 +359,24 @@
         return;
       }
 
-      // 結果表示
       showCard(suit, num);
     }
 
     function showCard(suit, num) {
       const label = numLabels[String(num)];
-
-      document.getElementById('card').className = 'card ' + suit.color;
-      document.getElementById('cardSuit').textContent = suit.symbol;
+      document.getElementById('card').className         = 'card ' + suit.color;
+      document.getElementById('cardSuit').textContent   = suit.symbol;
       document.getElementById('cardNumber').textContent = label;
-      document.getElementById('cardCorner').innerHTML =
-        label + '<br>' + suit.symbol;
-      document.getElementById('cardCornerBottom').innerHTML =
-        label + '<br>' + suit.symbol;
+      document.getElementById('cardCorner').innerHTML       = label + '<br>' + suit.symbol;
+      document.getElementById('cardCornerBottom').innerHTML = label + '<br>' + suit.symbol;
 
-      document.getElementById('lock-screen').style.display = 'none';
+      document.getElementById('lock-screen').style.display   = 'none';
       document.getElementById('result-screen').style.display = 'flex';
     }
 
     function resetInput() {
       input = '';
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 6; i++) {
         document.getElementById('dot' + i).classList.remove('filled');
       }
     }
